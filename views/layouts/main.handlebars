@@ -1,0 +1,45 @@
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1,0, minimum-scale=1.0">
+    <title>Tattoo Or DooDoo</title>
+    <link rel="stylesheet" type="text/css" href="/public/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/public/css/tailwind.css">
+     </head>
+
+<body>  
+    <header>
+        <h1>Main Page</h1>
+    </header>
+
+    <section class="main-gallery">
+        {{#each post}}
+        <div class="tattoo-post">
+            <img src="{{imageUrl}} alt={{image}}">
+            <h2>{{title}}</h2>
+            <p>{{description}}</p>
+            <div class="interactions">
+                <button class="like-btn" data-tatto-id="{{id}}">Like</button>
+                <span class="like-count">{{likes}}</span>
+                <button class="share-btn" data-tattoo-id="{{id}}">Share</button>
+                <button class="comment-btn" data-tattoo-id="{{id}}">Comment</button>
+            </div>
+        </div>
+        {{/each}}
+    </section>
+
+    <section class="comment-section">
+        {{#if showComments}}
+        <h3>Comments</h3>
+        <ul>
+            {{#each comments}}
+            <li>{{this}}</li>
+            {{/each}}
+        </ul>
+        <form id="comment-form" data-tattoo-id="{{currentTattooId}}">
+            <input type="text" id="comment-input" placeholder="Add a Comment">
+            <button type="submit">Submit</button>
+        </form>
+        {{/if}}
+    </section>
+</body>
