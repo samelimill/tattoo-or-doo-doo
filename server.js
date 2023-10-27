@@ -1,47 +1,27 @@
+const path = require('path');
 const express = require('express');
 const exphbs = require('express-handlebars');
-const Sequelize = require('sequelize');
+const routes = require('./controllers');
+const sequelize = require('./config/connection');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-// Set up Sequelize
-const sequelize = new Sequelize('your_database', 'your_user', 'your_password', {
-  host: 'localhost',
-  dialect: 'mysql', // Change this to your preferred database
-});
-
-// Define your Sequelize model
-const User = sequelize.define('User', {
-  // Define your model properties here
-  name: Sequelize.STRING,
-  email: Sequelize.STRING,
-  // Add more fields as needed
-});
-
-// Synchronize the model with the database
-sequelize.sync()
-  .then(() => {
-    console.log('Database and tables created.');
-  })
-  .catch(err => {
-    console.error('Database synchronization error:', err);
-  });
+const hbs = exphbs.create({});
 
 // Configure Handlebars as the template engine
-app.engine('handlebars', exphbs());
+app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
 
-// Configure other parts of your application, like routes
-app.get('/', (req, res) => {
-  // You can add your route logic here, including rendering views with Handlebars
-  res.render('index', { title: 'My Express App' });
-});
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(express.static(path.join(__dirname, 'public')));
 
-// Serve static files (CSS, JavaScript, images, etc.) from the public directory
-app.use(express.static('public'));
+app.use(routes);
 
-// Start the Express server
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-});
+// Synchronize the model with the database
+sequelize.sync({ force: false }).then(() => {
+  app.listen(PORT, () => console.log(`Server is running on port ${PORT}`))
+  .catch((err) => console.error('Database connection error:', err));
+  });
+
