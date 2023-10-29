@@ -1,45 +1,59 @@
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1,0, minimum-scale=1.0">
-    <title>Tattoo Or DooDoo</title>
-    <link rel="stylesheet" type="text/css" href="/public/css/style.css">
-    <link rel="stylesheet" type="text/css" href="/public/css/tailwind.css">
-     </head>
+<html lang='en'>
 
-<body>  
-    <header>
-        <h1>Main Page</h1>
-    </header>
+	<head>
 
-    <section class="main-gallery">
-        {{#each post}}
-        <div class="tattoo-post">
-            <img src="{{imageUrl}} alt={{image}}">
-            <h2>{{title}}</h2>
-            <p>{{description}}</p>
-            <div class="interactions">
-                <button class="like-btn" data-tatto-id="{{id}}">Like</button>
-                <span class="like-count">{{likes}}</span>
-                <button class="share-btn" data-tattoo-id="{{id}}">Share</button>
-                <button class="comment-btn" data-tattoo-id="{{id}}">Comment</button>
-            </div>
-        </div>
-        {{/each}}
-    </section>
+		<meta charset='UTF-8' />
+		<meta name='viewport' content='width=device-width, initial-scale=1.0' />
+		<title>SKINSC&#214;R</title>
+		<link href='/public/css/jass.css' />
+		<link href='/public/css/style.css' />
+		<link
+			rel='stylesheet'
+			href='https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css'
+		/>
+		<link
+			rel='stylesheet'
+			href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css'
+			integrity='sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=='
+			crossorigin='anonymous'
+			referrerpolicy='no-referrer'
+		/>
 
-    <section class="comment-section">
-        {{#if showComments}}
-        <h3>Comments</h3>
-        <ul>
-            {{#each comments}}
-            <li>{{this}}</li>
-            {{/each}}
-        </ul>
-        <form id="comment-form" data-tattoo-id="{{currentTattooId}}">
-            <input type="text" id="comment-input" placeholder="Add a Comment">
-            <button type="submit">Submit</button>
-        </form>
-        {{/if}}
-    </section>
-</body>
+	</head>
+
+	<body
+		class='bg-gray-800 text-gray-50 min-h-screen tracking-wide text-base leading-normal'
+	>
+		<div class='flex flex-col justify-center items-center h-screen'>
+
+			<header class='flex flex-col justify-center items-center py-10'>
+				<h1 class='text-5xl mb-8'>
+					SKINSC&#214;R
+				</h1>
+				<img
+					src='{{asset "logo.png"}}'
+					class='w-6/12'
+					alt='SKINSCORE'
+				/>
+			</header>
+			<nav class='space-x-3'>
+				<a class='font-bold' href='/'>Home</a>
+				{{#if loggedIn}}
+					<button id='logout' class='btn-no-style'>Logout</button>
+				{{else}}
+					<a class='font-bold' href='/login'>Login</a>
+				{{/if}}
+			</nav>
+
+			<main class='flex container justify-center content-center mt-5'>
+				{{{body}}}
+			</main>
+			{{#if loggedIn}}
+				<script src='/public/js/logout.js'></script>
+			{{/if}}
+			<footer>
+			</footer>
+		</div>
+	</body>
+
+</html>
