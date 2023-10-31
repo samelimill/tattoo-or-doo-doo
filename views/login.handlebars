@@ -1,14 +1,15 @@
+<form class="login-form">
 <div class="flex justify-center items-center h-screen bg-gray-600">
   <div class="w-96 p-6 shadow-lg bg-white rounded-md">
     <h1 class="text-black text-3xl block text-center font-semibold"><i class="fa-solid fa-users"></i> Login</h1>
     <hr class="mt-3">
     <div class="mt-3">
       <label for="username" class="block text-base mb-2">Username</label>
-      <input type="text" id="username" class="border w-full text-base px-2 py-1 focus:outline-none focus:ring-0 focus:border-gray-600" placeholder="Enter Username...">
+      <input type="text" id="username-login" class="border w-full text-base px-2 py-1 focus:outline-none focus:ring-0 focus:border-gray-600 text-black" placeholder="Enter Username...">
     </div>
      <div class="mt-3">
       <label for="password" class="block text-base mb-2">Password</label>
-      <input type="password" id="password" class="border w-full text-base px-2 py-1 focus:outline-none focus:ring-0 focus:border-gray-600" placeholder="Enter Password...">
+      <input type="password" id="password-login" class="border w-full text-base px-2 py-1 focus:outline-none focus:ring-0 focus:border-gray-600 text-black" placeholder="Enter Password...">
     </div>
     <div class="mt-3 flex justify-between items-center">
       <div class="text-black">
@@ -20,7 +21,10 @@
       </div>
     </div>
     <div class="mt-5">
-      <button type="submit" class="border-2 border-gray-800 bg-gray-800 text-white py-1 w-full rounded-md hover:bg-transparent hover:text-black font-semibold">Login</button>
+      <button type="submit" class="border-2 border-gray-800 bg-gray-800 text-white py-1 w-full rounded-md hover:bg-transparent hover:text-black font-semibold" id="login">Login</button>
     </div>
   </div>
 </div>
+</form>
+
+<script src="/public/js/login.js"></script>
