@@ -21,6 +21,40 @@ router.post('/tattoos', async (req, res) => {
   }
 });
 
+// Sign-up
+router.post('/signup', async (req, res) => {
+  try {
+    const { username, email, password } = req.body;
+
+    // Check if the username or email is already taken
+    const existingUser = await User.findOne({
+      where: {
+        [Op.or]: [{ username }, { email }],
+      },
+    });
+
+    if (existingUser) {
+      return res.status(400).json({ message: 'Username or email already exists.' });
+    }
+
+    // Create a new user
+    const newUser = await User.create({
+      username,
+      email,
+      password, // You should hash the password before saving it
+    });
+
+    req.session.save(() => {
+      req.session.loggedIn = true;
+
+      res.status(201).json({ user: newUser, message: 'You are now signed up and logged in!' });
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Internal Server Error' });
+  }
+});
+
 // Login
 router.post('/login', async (req, res) => {
   try {
