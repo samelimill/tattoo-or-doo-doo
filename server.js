@@ -22,11 +22,8 @@ const sess = {
 app.use(session(sess));
 
 const hbs = exphbs.create({
-	helpers: {
-		asset: function (filePath) {
-			return path.join('/public/images/', filePath);
-		}
-	}
+	defaultLayout: 'main',
+	partialsDir: path.join(__dirname, 'views/partials'),
 });
 
 // Configure Handlebars as the template engine
