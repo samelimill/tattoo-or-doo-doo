@@ -2,16 +2,18 @@
 
 <head>
 
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0 minimum-scale=1.0"/>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0 minimum-scale=1.0" />
     <title>Skinscr&#214;r</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css"/>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href='/public/css/jass.css' />
     <link href='/public/css/style.css' />
     <style>
         body {
-            background-image: url('/public/images/Skincore\ Background.jpg')	;
+            background-image: url('/public/images/Skincore\ Background.jpg');
             background-size: cover;
         }
 
@@ -19,41 +21,24 @@
             body {
                 background-image: url('/public/images/Phone-tablet\ Background.jpg');
             }
-        .btn-middle {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
         }
-        
-        }    
     </style>
 </head>
 
 <body class="h-screen flex justify-end items-center">
-    <div class="p-8 text-left btn-middle" style="margin-right: 200px;">
-        <div class="mb-12">
-            <h3 class="text-lg">Create an account!</h3>
-            <a href="/signup">
-            <button class="bg-gray-900 hover:bg-gray-700 text-white font-bold py-3 px-14 rounded-full signup-button">
-               Sign up
-            </button>
-            </a>
-        </div>
-<main>
-	{{{body}}}
-</main>
-        <div>
-            <h3 class="text-lg">Already have an account?</h3>
-             <a href="/login">
-            <button class="bg-gray-900 hover:bg-gray-700 text-white font-bold py-3 px-16 rounded-full login-button">
-               Login
-            </button> 
-            </a>
 
-            
+    <main>
+        <div id="login-form">
+            {{> login}}
         </div>
-    </div>
-    <script src="/public/js/logout.js"></script>
+        <div id="signup-form" style="display:none;">
+            {{> signup}}
+        </div>
+        {{{body}}}
+    </main>
+
+    {{!--
+    <script src="/public/js/logout.js"></script> --}}
 </body>
+
 </html>
