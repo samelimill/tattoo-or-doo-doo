@@ -1,9 +1,9 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
-class Post extends Model {}
+class Tattoo extends Model {}
 
-Post.init(
+Tattoo.init(
   {
     id: {
       type: DataTypes.INTEGER,
@@ -39,4 +39,4 @@ Post.init(
   }
 );
 
-module.exports = Post;
+module.exports = Tattoo;
