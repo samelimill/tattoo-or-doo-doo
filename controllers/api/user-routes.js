@@ -1,22 +1,23 @@
 const router = require('express').Router();
 const { User, Post, Comment } = require('../../models');
 
-// CREATE new user
-router.post('/', async (req, res) => {
+// Create a new tattoo post
+router.post('/tattoos', async (req, res) => {
   try {
-    const UserData = await User.create({
-      username: req.body.username,
-      password: req.body.password,
+    const { title, description, artist, imageUrl } = req.body; // Adjust the fields according to your Tattoo model
+
+    const newTattoo = await Tattoo.create({
+      title,
+      description,
+      artist,
+      imageUrl,
+      userId,
     });
 
-    req.session.save(() => {
-      req.session.loggedIn = true;
-
-      res.status(200).json(UserData);
-    });
+    res.status(201).json(newTattoo); // Respond with the newly created tattoo post
   } catch (err) {
-    console.log(err);
-    res.status(500).json(err);
+    console.error(err);
+    res.status(500).json({ message: 'Internal Server Error' });
   }
 });
 
