@@ -34,19 +34,26 @@
     <div class="p-8 text-left btn-middle" style="margin-right: 200px;">
         <div class="mb-12">
             <h3 class="text-lg">Create an account!</h3>
-            <button class="bg-gray-900 hover:bg-gray-700 text-white font-bold py-3 px-16 rounded-full" href="/signup">
-                Sign up
+            <a href="/signup">
+            <button class="bg-gray-900 hover:bg-gray-700 text-white font-bold py-3 px-14 rounded-full signup-button">
+               Sign up
             </button>
+            </a>
         </div>
 <main>
 	{{{body}}}
 </main>
         <div>
             <h3 class="text-lg">Already have an account?</h3>
-            <button class="bg-gray-900 hover:bg-gray-700 text-white font-bold py-3 px-16 rounded-full">
-                <a href="/login">Login</a>
+             <a href="/login">
+            <button class="bg-gray-900 hover:bg-gray-700 text-white font-bold py-3 px-16 rounded-full login-button">
+               Login
             </button> 
+            </a>
+
+            
         </div>
     </div>
+    <script src="/public/js/logout.js"></script>
 </body>
 </html>

@@ -69,6 +69,10 @@ app.post('/login', async (req, res) => {
 	}
 });
 
+app.get('/signup', (req, res) => {
+	res.render('signup');
+});
+
 
 // Synchronize the model with the database
 sequelize.sync({ force: false }).then(() => {
