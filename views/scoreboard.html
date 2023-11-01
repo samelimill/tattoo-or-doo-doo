@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dynamic Scoreboard</title>
+    <style>
+        body {
+            background-image: url('../public/images/Skincore Background.jpg');
+            background-size: cover;
+            margin: 0;
+            display: flex;
+            justify-content: flex-end; /* Align content to the right */
+            align-items: center;
+            height: 100vh;
+        }
+
+        .scoreboard {
+           
+            border: 1px solid #fffcfc;
+            padding: 20px;
+            width: 600px;
+            height: 100vh; /* Fill the screen vertically */
+        }
+
+        .user {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="scoreboard">
+        <h1>Scoreboard</h1>
+        {{#each users}}
+            <div class="user" data-user-id="{{id}}">
+                <span class="username">{{username}}</span>
+                <span class="points">Points: <span class="user-points">{{points}}</span></span>
+            </div>
+        {{/each}}
+    </div>
+</body>
+</html>
