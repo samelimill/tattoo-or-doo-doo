@@ -8,21 +8,23 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
     <link href='/public/css/jass.css' />
     <link href='/public/css/style.css' />
+    
+
+
 </head>
 
-<body class="bg-gray-300 font-sans">
+<body class="bg-gray-400 font-sans">
     <div class="container mx-auto p-4 bg-white shadow-lg rounded-lg">
         <div class="text-center">
             <h1 class="text-2xl font-bold">User Profile</h1>
         </div>
 
         <div class="flex items-center my-4">
-            <img src="/public/images/user-profile-image.jpg" alt="User Profile Picture" class="w-16 h-16 rounded-full mr-4">
+            <img src="../public/images/skinscoretestpfp.png" alt="User Profile Picture" class="w-16 h-16 rounded-full mr-4">
             <div>
-                <h2 class="text-xl font-bold">Name: John Doe</h2>
-                <p>Email: john.doe@example.com</p>
-                <p>Location: New York, USA</p>
-                <p class="text-orange-500 font-semibold">SkinScore: 0</p>
+                <h2 class="text-xl font-bold">Name: SkinScore Admin</h2>
+                <p>Location: Oregon, USA</p>
+                <p class="font-semibold">SkinScore: 100000</p>
             </div>
         </div>
 
@@ -31,25 +33,17 @@
         </div>
 
         <div class="my-4">
+            {{#each userPosts}}
             <div class="bg-gray-200 rounded p-4 mb-4">
-                <h3 class="text-xl font-semibold">Post 1</h3>
-                <p>This is the content of the first post.</p>
-                <img src="/public/images/post-image1.jpg" alt="Post Image 1" class="mt-4 rounded">
+                <h3 class="text-xl font-semibold">{{title}}</h3>
+                <p>{{content}}</p>
+                <img src="{{image}}" alt="{{title}}" class="mt-4 rounded">
                 <div class="text-right mt-2">
                     <button class="bg-black text-white px-4 py-2 rounded mr-2">Like</button>
                     <button class="bg-red-500 text-white px-4 py-2 rounded">Dislike</button>
                 </div>
             </div>
-
-            <div class="bg-gray-200 rounded p-4 mb-4">
-                <h3 class="text-xl font-semibold">Post 2</h3>
-                <p>This is the content of the second post.</p>
-                <img src="/public/images/post-image2.jpg" alt="Post Image 2" class="mt-4 rounded">
-                <div class="text-right mt-2">
-                    <button class="bg-black text-white px-4 py-2 rounded mr-2">Like</button>
-                    <button class="bg-red-500 text-white px-4 py-2 rounded">Dislike</button>
-                </div>
-            </div>
+            {{/each}}
         </div>
 
         <div class="bg-gray-200 rounded p-4 my-4">
@@ -60,19 +54,12 @@
                     <input type="text" name="title" placeholder="Post Title" class="w-full py-2 px-4 rounded border border-gray-300 mb-4">
                     <textarea name="content" placeholder="Post Content" rows="4" class="w-full py-2 px-4 rounded border border-gray-300 mb-4"></textarea>
                     <input type="text" name="tags" placeholder="Tags (comma-separated)" class="w-full py-2 px-4 rounded border border-gray-300 mb-4">
-                    <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700">Create Post</button>
+                    <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded hover-bg-blue-700">Create Post</button>
                 </form>
             </div>
         </div>
     </div>
-    
-    <script>
-        const showCreatePostButton = document.getElementById('showCreatePost');
-        const createPostContainer = document.getElementById('createPostContainer');
-        
-        showCreatePostButton.addEventListener('click', () => {
-            createPostContainer.classList.toggle('hidden');
-        });
-    </script>
+    <script src="../public/js/userprofile.js"></script>
 </body>
+
 </html>
