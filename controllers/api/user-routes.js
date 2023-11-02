@@ -21,6 +21,32 @@ router.post('/tattoos', async (req, res) => {
   }
 });
 
+// Add a comment to a user post
+router.post('/posts/:postId/comments', async (req, res) => {
+  try {
+    const { text, userId } = req.body; // Adjust the fields according to your Comment model
+
+    // Check if the post with postId exists
+    const post = await Post.findByPk(req.params.postId);
+
+    if (!post) {
+      return res.status(404).json({ message: 'Post not found' });
+    }
+
+    // Create a new comment
+    const newComment = await Comment.create({
+      text,
+      userId,
+      postId: post.id, // Associate the comment with the post
+    });
+
+    res.status(201).json(newComment); // Respond with the newly created comment
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Internal Server Error' });
+  }
+});
+
 // Sign-up
 router.post('/signup', async (req, res) => {
   try {
