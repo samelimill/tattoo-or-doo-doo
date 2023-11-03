@@ -21,25 +21,34 @@
 			crossorigin='anonymous'
 			referrerpolicy='no-referrer'
 		/>
+		<link 
+		rel="stylesheet" 
+		href="https://fonts.googleapis.com/css?family=Finger+Paint" 
+		/>
+
 		{{! Compiled Tailwind }}
 		<link href='/public/css/output.css' />
 		<style>
 
-			body { background-image: url(/public/images/login-background.jpg);
+			body { background-image: url(/public/images/ShadowedBackgroundlogin.jpg);
 			background-size: cover; background-position: center;
-			background-repeat: no-repeat; }
+			background-repeat: no-repeat; 
+			font-family: 'Finger Paint', cursive;
+			}
 
 		</style>
 	</head>
-	<header
-		class='text-white p-4 flex justify-between items-center w-screen fixed top-0 left-0 right-0 z-10'
-	>
-		<div class='flex space-x-4'>
-			<a href='/login' class='text-lg hover:text-gray-300'>Login</a>
-			<a href='/homepage' class='text-lg hover:text-gray-300'>Home</a>
-			<a href='/gallery' class='text-lg hover:text-gray-300'>Profile</a>
-		</div>
-	</header>
+<header class="text-white p-.2 flex justify-between items-center w-screen fixed top-0 left-0 right-0 z-10 bg-black">
+  <div class="flex items-center space-x-4 pl-4">
+    <a href="/homepage" class="text-xl hover:text-yellow-400 text-yellow-200">Home</a>
+    <a href="/login" class="text-xl hover:text-gray-300">Login</a>
+    <a href="/gallery" class="text-xl hover:text-gray-300">Profile</a>
+  </div>
+  <div class="flex items-center">
+    <img src="/public/images/logoSKINSCORE.png" class="h-22 w-44 pr-10 pt-2" alt="SKINSCORE Logo">
+  </div>
+</header>
+
 
 	<body>
 
@@ -48,5 +57,11 @@
 		</main>
 
 		<script src='/public/js/logout.js'></script>
-	</body>
+
+	  <div class="fixed bottom-0 left-0 w-full h- bg-black text-white">
+    <div class="container mx-auto text-center">&copy; 2023 SKIN&#214;R</div>
+  </div>
+
+  <footer class="bg-black text-white py-4"></footer>
+</body>
 </html>
