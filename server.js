@@ -40,40 +40,6 @@ app.use('/public', express.static(path.join(__dirname, 'public')));
 
 app.use(routes);
 
-
-app.get('/', (req, res) => {
-	res.sendFile(path.join(__dirname, '/public'))
-});
-
-app.get('/login', (req, res) => {
-	res.render('login');
-});
-
-app.post('/login', async (req, res) => {
-	const { username, password } = req.body;
-
-	const user = await User.findOne({ where: { username } });
-
-	if (!user) {
-		res.status(401).json({ message: 'Are you messing with me? Invalid username or password.' });
-	} else {
-		const validPassword = await bcrypt.compare(password, user.password);
-
-		if (validPassword) {
-			req.session.user = user;
-
-			res.redirect('/dashboard');
-		} else {
-			res.status(401).json({ message: 'Are you messing with me? Invalid username or password.' });
-		}
-	}
-});
-
-app.get('/signup', (req, res) => {
-	res.render('signup');
-});
-
-
 // Synchronize the model with the database
 sequelize.sync({ force: false }).then(() => {
 	app.listen(PORT, () => console.log(`Server is running on port ${PORT}`));
