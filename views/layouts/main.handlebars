@@ -30,7 +30,7 @@
 		<link href='/public/css/output.css' />
 		<style>
 
-			body { background-image: url(/public/images/ShadowedBackgroundlogin.jpg);
+			body { background-image: url('/public/images/ShadowedBackgroundlogin.jpg');
 			background-size: cover; background-position: center;
 			background-repeat: no-repeat; 
 			font-family: 'Finger Paint', cursive;
@@ -39,8 +39,7 @@
 		</style>
 	</head>
 
-	<!--Nav Bar-->
-<header class="text-white p-.2 flex justify-between items-center w-screen fixed top-0 left-0 right-0 z-10 bg-black border-b-4 border-yellow-200">
+<header class="text-white p-.2 flex justify-between items-center w-screen fixed top-0 left-0 right-0 z-10 bg-black bg-opacity-20 transition-all duration-500 hover:bg-black">
   <div class="flex items-center space-x-4 pl-4">
 	 <a class="flex items-center hover:text-gray-500" href="/gallery">
               <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 hover:text-yellow-400 text-yellow-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -53,7 +52,7 @@
 	<a href="/about" class="text-xl hover:text-gray-400">About</a>
   </div>
   <div class="flex items-center">
-    <img src="/public/images/logoSKINSCORE.png" class="h-20 w-42 pr-10 pt-4" alt="SKINSCORE Logo">
+    <img src="/public/images/logoSKINSCORE.png" class="h-20 w-42 pr-10 pt-2" alt="SKINSCORE Logo">
   </div>
 </header>
 
@@ -68,6 +67,5 @@
     <div class="container mx-auto text-center">&copy; 2023 SKIN&#214;R</div>
   </div>
 
-  <footer class="bg-black text-white py-4"></footer>
 </body>
 </html>
