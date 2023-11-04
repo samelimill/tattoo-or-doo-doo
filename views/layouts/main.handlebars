@@ -38,20 +38,26 @@
 
 		</style>
 	</head>
-<header class="text-white p-.2 flex justify-between items-center w-screen fixed top-0 left-0 right-0 z-10 bg-black">
+
+	<!--Nav Bar-->
+<header class="text-white p-.2 flex justify-between items-center w-screen fixed top-0 left-0 right-0 z-10 bg-black border-b-4 border-yellow-200">
   <div class="flex items-center space-x-4 pl-4">
-    <a href="/homepage" class="text-xl hover:text-yellow-400 text-yellow-200">Home</a>
-    <a href="/login" class="text-xl hover:text-gray-300">Login</a>
-    <a href="/gallery" class="text-xl hover:text-gray-300">Profile</a>
+	 <a class="flex items-center hover:text-gray-500" href="/gallery">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 hover:text-yellow-400 text-yellow-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+          </a>
+    <a href="/homepage" class="text-xl hover:text-gray-400">Home</a>
+    <a href="/login" class="text-xl hover:text-gray-400">Login</a>
+	<a href="/leaderboard" class="text-xl hover:text-gray-400">Leaderboard</a>
+	<a href="/about" class="text-xl hover:text-gray-400">About</a>
   </div>
   <div class="flex items-center">
-    <img src="/public/images/logoSKINSCORE.png" class="h-22 w-44 pr-10 pt-2" alt="SKINSCORE Logo">
+    <img src="/public/images/logoSKINSCORE.png" class="h-20 w-42 pr-10 pt-4" alt="SKINSCORE Logo">
   </div>
 </header>
 
-
 	<body>
-
 		<main>
 			{{{body}}}
 		</main>

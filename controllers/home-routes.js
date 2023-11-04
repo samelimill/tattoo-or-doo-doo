@@ -27,5 +27,9 @@ router.get('/gallery', (req, res) => {
   res.render('gallery');
 });
 
+router.get('/leaderboard', (req, res) => {
+  res.render('leaderboard');
+});
+
 module.exports = router;
 
