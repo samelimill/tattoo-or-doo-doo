@@ -1,5 +1,16 @@
+const { check, validationResult } = require('express-validator');
 const router = require('express').Router();
+const bcrypt = require('bcrypt');
 const { User, Post, Comment } = require('../../models');
+
+// Authentication middleware
+function ensureAuthenticated(req, res, next) {
+  if (req.session.loggedIn) {
+    return next();
+  }
+
+  res.redirect('/login');
+}
 
 // Create a new tattoo post
 router.post('/tattoos', async (req, res) => {
@@ -48,33 +59,30 @@ router.post('/posts/:postId/comments', async (req, res) => {
 });
 
 // Sign-up
-router.post('/signup', async (req, res) => {
+router.post('/signup', [
+  check('username').notEmpty().withMessage('Username is required'),
+  check('email').isEmail().withMessage('Email is not valid'),
+  check('password').isLength({ min: 8 }).withMessage('Password must be at least 8 characters long'),
+], async (req, res) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
+  }
+
   try {
     const { username, email, password } = req.body;
 
-    // Check if the username or email is already taken
-    const existingUser = await User.findOne({
-      where: {
-        [Op.or]: [{ username }, { email }],
-      },
-    });
-
-    if (existingUser) {
-      return res.status(400).json({ message: 'Username or email already exists.' });
-    }
+    // Hash the password
+    const hashedPassword = await bcrypt.hash(password, 10);
 
     // Create a new user
     const newUser = await User.create({
       username,
       email,
-      password, // You should hash the password before saving it
+      password: hashedPassword,
     });
 
-    req.session.save(() => {
-      req.session.loggedIn = true;
-
-      res.status(201).json({ user: newUser, message: 'You are now signed up and logged in!' });
-    });
+    res.status(201).json(newUser); // Respond with the newly created user
   } catch (err) {
     console.error(err);
     res.status(500).json({ message: 'Internal Server Error' });
@@ -84,38 +92,31 @@ router.post('/signup', async (req, res) => {
 // Login
 router.post('/login', async (req, res) => {
   try {
-    const UserData = await User.findOne({
-      where: {
-        username: req.body.username,
-      },
-    });
+    const { username, password } = req.body;
 
-    if (!UserData) {
-      res
-      .status(400)
-      .json({ message: 'Incorrect username or password. Please try again!' });
-      return;
+    // Find the user by username
+    const user = await User.findOne({ where: { username } });
+
+    // If user doesn't exist, send an error
+    if (!user) {
+      return res.status(400).json({ message: 'Invalid username or password' });
     }
 
-    const validPassword = await UserData.checkPassword(req.body.password);
+    // Check the password
+    const isPasswordCorrect = await bcrypt.compare(password, user.password);
 
-    if (!validPassword) {
-      res
-      .status(400)
-      .json({ message: 'Incorrect username or password. Please try again!' });
-      return;
+    // If the password is incorrect, send an error
+    if (!isPasswordCorrect) {
+      return res.status(400).json({ message: 'Invalid username or password' });
     }
 
-    req.session.save(() => {
-      req.session.loggedIn = true;
-
-      res
-      .status(200)
-      .json({ user: UserData, message: 'You are now logged in!' });
-    });
+    // If everything is correct, respond with the user
+    req.session.user = user;
+    req.session.loggedIn = true;
+    res.json(user);
   } catch (err) {
-    console.log(err);
-    res.status(500).json(err);
+    console.error(err);
+    res.status(500).json({ message: 'Internal Server Error' });
   }
 });
 
@@ -128,6 +129,15 @@ router.post('/logout', (req, res) => {
   } else {
     res.status(404).end();
   }
+});
+
+// Authentication routes
+router.get('/gallery', ensureAuthenticated, (req, res) => {
+  res.render('gallery', { User: req.session.user});
+});
+
+router.get('/', ensureAuthenticated, (req, res) => {
+  res.render('homepage', { User: req.session.user});
 });
 
 module.exports = router;
