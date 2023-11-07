@@ -1,29 +1,7 @@
 <div class='flex justify-center items-center h-screen w-screen'>
-	<div class='container mx-auto p-4 bg-white shadow-lg rounded-lg'>
+	<div class='container mx-auto p-4 bg-gray-300 shadow-lg rounded-lg'>
 		<div class='text-center'>
 			<h1 class='text-2xl font-bold'>User Profile</h1>
-
-
-<button id="logoutButton" class="bg-black text-white rounded-lg px-4 py-2 hover:bg-gray-800" type="button">
-  Log Out
-</button>
-
-<script>
-  const logoutButton = document.getElementById("logoutButton");
-
-  logoutButton.addEventListener("click", function() {
-    // Display a confirmation prompt
-    const userConfirmation = confirm("Are you sure you want to log out?");
-
-    // If the user confirms, log them out by clearing the session storage
-    if (userConfirmation) {
-      sessionStorage.clear();
-
-      // Redirect the user to the "/login" route
-      window.location.href = "/login"; 
-    }
-  });
-</script>
 
 		<div class='flex items-center my-4'>
 			<img
@@ -34,6 +12,7 @@
 			<div>
 				<h2 class='text-xl font-bold'>Name: {{ User.username }}</h2>
 				<p class='font-semibold'>SkinScore: {{ User.skinscore }}</p>
+				<a href="/login" id="logout-profile" class="text-lg font-semibold text-blue-700 underline hover:text-blue-500">Logout</a>
 			</div>
 		</div>
 

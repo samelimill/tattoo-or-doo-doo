@@ -1,7 +1,4 @@
-
-<div
-	class='bg-gray-300 flex justify-center items-center h-screen'
->
+<div class='bg-gray-300 flex justify-center items-center h-screen'>
 	<!-- Left: Image -->
 	<div class='w-1/2 h-screen hidden lg:block'>
 		<img
@@ -12,18 +9,23 @@
 	</div>
 	<!-- Right: Login Form -->
 	<div class='lg:p-36 md:p-52 sm:p-5 p-8 w-full lg:w-1/2'>
-		<h1 class='text-2xl font-semibold mb-4'><i class="fa-solid fa-syringe"></i> Login</h1>
-		<form class="login-form" action='/login' method='POST'>
-      <!-- Username Input -->
-      <div class='mb-4'>
-        <label for='username' class='block text-gray-600'>Your username</label>
-        <input
-          type='username'
-          id='username-login'
-          name='username'
-          class='w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-gray-500'
-          autocomplete='off' placeholder='tAtToOz_R_kEwl_420' required
-        />
+		<h1 class='text-2xl font-semibold mb-4'><i
+				class='fa-solid fa-syringe'
+			></i>
+			Login</h1>
+		<form class='login-form' action='/login' method='POST'>
+			<!-- Username Input -->
+			<div class='mb-4'>
+				<label for='username' class='block text-gray-600'>Your username</label>
+				<input
+					type='username'
+					id='username-login'
+					name='username'
+					class='w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-gray-500'
+					autocomplete='off'
+					placeholder='tAtToOz_R_kEwl_420'
+					required
+				/>
 
 			</div>
 			<!-- Password Input -->
@@ -37,17 +39,18 @@
 					id='password-login'
 					name='password'
 					class='w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-gray-500'
-					autocomplete='off' placeholder="••••••••" required
+					autocomplete='off'
+					placeholder='••••••••'
+					required
 				/>
 			</div>
 
 			<!-- Login Button -->
-				<button
-					type='submit'
-
-					id='login'
-					class='bg-gray-800 hover:bg-gray-900 text-white font-semibold rounded-md py-2 px-4 w-full'
-				>Login</button>
+			<button
+				type='submit'
+				id='login'
+				class='bg-gray-800 hover:bg-gray-900 text-white font-semibold rounded-md py-2 px-4 w-full'
+			>Login</button>
 		</form>
 		<!-- Sign up  Link -->
 		<div class='mt-6 text-blue-600 text-center'>
@@ -57,4 +60,3 @@
 </div>
 
 <script src='/public/js/login.js'></script>
-

@@ -1,4 +1,3 @@
-
 const path = require('path');
 const express = require('express');
 const exphbs = require('express-handlebars');
@@ -16,7 +15,7 @@ const sess = {
 	resave: false,
 	saveUninitialized: true,
 	store: new SequelizeStore({
-		db: sequelize
+		db: sequelize,
 	}),
 };
 
@@ -32,10 +31,16 @@ app.set('view engine', 'handlebars');
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use('/public', express.static(path.join(__dirname, 'public')));
+app.use((req, res, next) => {
+	res.locals.loggedIn = req.session.loggedIn;
+	next();
+});
 
 app.use(routes);
 
 // Synchronize the model with the database
 sequelize.sync({ force: false }).then(() => {
-	app.listen(PORT, () => console.log(`Server is running on port https://localhost:${PORT}`));
+	app.listen(PORT, () =>
+		console.log(`Server is running on port https://localhost:${PORT}`)
+	);
 });
