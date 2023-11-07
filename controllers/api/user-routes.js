@@ -77,7 +77,7 @@ router.post(
 				password,
 			});
 
-			res.redirect('/homepage');
+//			res.redirect('/homepage');
 
 			res.status(201).json(newUser); // Respond with the newly created user
 		} catch (err) {

@@ -32,7 +32,6 @@ Tattoo.init(
     },
     points: {
       type: DataTypes.INTEGER,
-      
     }
   },
   {

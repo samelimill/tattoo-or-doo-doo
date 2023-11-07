@@ -33,17 +33,7 @@ router.post('/post', async (req, res) => {
     return response.json();
 };
 
-// const getbbUrl = async (data) => {
-//   await fetch(`https://api.imgbb.com/1/upload?expiration=600&key=${key}`, {
-//     method: 'POST',
-//     body: data,
-//   })
-//   .then(response => response.json())
-//   .then(data => function async (data)  {
-//     console.log(data);
-//     return data;
-//   }).catch((error) => {
-//     console.error('Error:', error);
-//   });
-// }
-  module.exports = router;
+router.put('/:id', async (req, res) => {
+  console.log(req.body);
+});
+module.exports = router;
