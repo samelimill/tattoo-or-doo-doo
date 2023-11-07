@@ -15,11 +15,11 @@ Tattoo.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    content: {
+    description: {
       type: DataTypes.TEXT,
       allowNull: true, // Content could be optional if you have an image
     },
-    imageUrl: {
+    imgUrl: {
       type: DataTypes.STRING, // Store the URL or file path of the image
       allowNull: true, // Image is optional
     },
@@ -32,8 +32,8 @@ Tattoo.init(
     },
     points: {
       type: DataTypes.INTEGER,
-      
-    }
+      defaultValue: 0,
+    },
   },
   {
     sequelize,

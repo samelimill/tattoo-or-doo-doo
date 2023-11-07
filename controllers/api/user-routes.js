@@ -1,6 +1,6 @@
 const { check, validationResult } = require('express-validator');
 const router = require('express').Router();
-const { User, Post, Comment } = require('../../models');
+const { User, Tattoo, Comment } = require('../../models');
 
 // Authorization middleware
 function requireLogin(req, res, next) {
@@ -41,7 +41,7 @@ router.post('/login', async (req, res) => {
       return res.redirect('/login');
 		}
 
-		// If everything is correct, respond with the user
+		// If everything is OK, log in the user
 		req.session.user = user;
 		req.session.loggedIn = true;
 		res.json(user);
@@ -145,9 +145,12 @@ router.post(
 				password,
 			});
 
-			res.redirect('/homepage');
+			// Log in the user
+			req.session.user = newUser;
+			req.session.loggedIn = true;
 
-			res.status(201).json(newUser); // Respond with the newly created user
+			// Respond with the newly created user
+			res.status(201).json(newUser);
 		} catch (err) {
 			console.error(err);
 			res.status(500).json({ message: 'Internal Server Error' });
@@ -165,6 +168,27 @@ router.post('/logout', (req, res) => {
       res.redirect('/login');
 		});
 });
+
+// New Tattoo Route
+router.post('/tattoo', async (req, res) => {
+	console.log(req.body);
+	  try {
+		  const { title, description, imgUrl, artist, userId } = req.body; // Adjust the fields according to your Tattoo model
+  
+		  const newTattoo = await Tattoo.create({
+			  title,
+			  description,
+			  imgUrl,
+			  artist,
+			  userId,
+		  });
+  
+		  res.status(201).json(newTattoo); // Respond with the newly created tattoo post
+	  } catch (err) {
+		  console.error(err);
+		  res.status(500).json({ message: 'Internal Server Error' });
+	  }
+  });
 
 // Comment Routes
 router.post('/posts/:postId/comments', async (req, res) => {
@@ -192,29 +216,17 @@ router.post('/posts/:postId/comments', async (req, res) => {
 	}
 });
 
-// New Tattoo Route
-router.post('/tattoos', async (req, res) => {
-	try {
-		const { title, description, artist, imageUrl } = req.body; // Adjust the fields according to your Tattoo model
 
-		const newTattoo = await Tattoo.create({
-			title,
-			description,
-			artist,
-			imageUrl,
-		});
-
-		res.status(201).json(newTattoo); // Respond with the newly created tattoo post
-	} catch (err) {
-		console.error(err);
-		res.status(500).json({ message: 'Internal Server Error' });
-	}
-});
 
 // Authentication routes
 router.get('/profile', requireLogin, (req, res) => {
 	const user = req.session.user;
 	res.render('profile', { user });
 });
+
+router.get('/createpost', (req, res) => {
+	const user = req.session.user;
+	res.render('createpost')
+})
 
 module.exports = router;

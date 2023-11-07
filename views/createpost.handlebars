@@ -7,9 +7,8 @@
 		<div id='createPostContainer'></div>
 		<form
 			id='myForm'
-			action='/tattoos'
+			action='/api/users/tattoo'
 			method='post'
-			enctype='multipart/form-data'
 		>
 			<input
 				type='text'
@@ -24,9 +23,9 @@
 				class='w-full py-2 px-4 rounded border border-gray-300 mb-4'
 			></textarea>
 			<input
-				type='file'
-				name='imageUrl'
-				accept='image/*'
+				type='text'
+				name='imgUrl'
+				placeholder="Image URL"
 				class='w-full py-2 px-4 rounded border border-gray-300 mb-4'
 			/>
 			<input
@@ -48,4 +47,4 @@
 		</form>
 	</div>
 </div>
-<script src='../public/js/createpost.js'></script>
+{{!-- <script src='../public/js/createpost.js'></script> --}}
