@@ -12,7 +12,7 @@
 		/>
 		<p class='mt-4'>{{userDescription}}</p>
 		<div class='flex items-center mt-4 space-x-4'>
-			<button class='flex items-center space-x-2'>
+			<button id="likeButton" class='flex items-center space-x-2'>
 				<svg
 					class='w-5 h-5'
 					fill='none'
@@ -20,7 +20,17 @@
 					viewBox='0 0 24 24'
 					xmlns='http://www.w3.org/2000/svg'
 				></svg>
-				<span>Like ({{likeCount}})</span>
+				<span>Likes {{likeCount}}</span>
+			</button>
+			<button id="dislikeButton" class='flex items-center space-x-2'>
+				<svg
+					class='w-5 h-5'
+					fill='none'
+					stroke='currentColor'
+					viewBox='0 0 24 24'
+					xmlns='http://www.w3.org/2000/svg'
+				></svg>
+				<span>Dislikes {{dislikeCount}}</span>
 			</button>
 			<button class='flex items-center space-x-2'>
 				<svg
@@ -30,21 +40,12 @@
 					viewBox='0 0 24 24'
 					xmlns='http://www.w3.org/2000/svg'
 				></svg>
-				<span>Dislike ({{dislikeCount}})</span>
-			</button>
-			<button class='flex items-center space-x-2'>
-				<svg
-					class='w-5 h-5'
-					fill='none'
-					stroke='currentColor'
-					viewBox='0 0 24 24'
-					xmlns='http://www.w3.org/2000/svg'
-				></svg>
-				<span>Message ({{messageCount}})</span>
+				<span>Messages {{messageCount}}</span>
 			</button>
 		</div>
 	</div>
 
 	</div>
 </div>
-<script src='../public/js/homepage.js'></script>
+
+<script src="/public/js/leaderboard.js"></script>
