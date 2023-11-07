@@ -16,19 +16,19 @@ router.get('/signup', async (req, res) => {
 });
 
 // route for user's profile
-router.get('/profile', async (req, res) => {
-  res.render('profile');
+router.get('/gallery', async (req, res) => {
+  res.render('gallery');
 });
 
 // route to make sure user is logged in and get user data
-router.get('/profile', (req, res) => {
+router.get('/gallery', (req, res) => {
   if (!req.session.user) {
     req.flash('error', 'You must be logged in to view this page.')
     return res.redirect('/login');
   }
 
   req.flash('success', 'You are now logged in!')
-  res.render('profile', { User: req.session.user});
+  res.render('gallery', { User: req.session.user});
 });
 
 // route for homepage
