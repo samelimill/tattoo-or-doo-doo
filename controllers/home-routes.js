@@ -13,7 +13,6 @@ router.get('/login', async (req, res) => {
 // Signup Route
 router.get('/signup', async (req, res) => {
 
-
   res.render('signup');
 });
 
