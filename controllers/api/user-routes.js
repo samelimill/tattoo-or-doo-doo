@@ -54,12 +54,16 @@ router.post('/login', async (req, res) => {
 router.post('/hotornot', async (req, res) => {
 	try {
 		const math = Math.floor(Math.random() * 10);
-		const tattoo = await Tattoo.findOne({ where: { id: 11 } });
+		const tattoo = await Tattoo.findOne({ where: { id: math } });
 		res.send(tattoo)
 	} catch (err) {
 		console.error(err);
 		res.status(500).json({ message: 'Internal Server Error' });
 	}
+});
+
+router.put('/posts/:id', async (req, res) => {
+	
 });
 
 // Like a post

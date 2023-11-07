@@ -81,6 +81,7 @@
 							</a>
 						</li>
 						<li class='py-2 lg:py-0'>
+							{{#if loggedIn}}
 							<a
 								class='text-gray-400 transition hover:text-yellow-400'
 								href='/gallery'
@@ -89,7 +90,7 @@
 							</a>
 						</li>
 						<li class='py-2 lg:py-0'>
-							{{#if loggedIn}}
+							
 								<a
 									class='text-gray-400 transition hover:text-yellow-400'
 									href='/logout' id="logout"
@@ -133,15 +134,7 @@
 
 		<footer class='bg-black'>
 			<div class='mx-auto max-w-5xl px-4 py-16 sm:px-6 lg:px-8'>
-				<div class='flex justify-center text-gray-500'>
-					{{! Insert Logo Here }}
-				</div>
 
-				<p
-					class='mx-auto mt-6 max-w-md text-center leading-relaxed text-white'
-				>
-					SKINSC&#214;R 2021. All rights reserved.
-				</p>
 
 				<ul
 					class='mt-12 flex flex-wrap justify-center gap-6 md:gap-8 lg:gap-12'
