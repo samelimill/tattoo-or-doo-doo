@@ -51,9 +51,16 @@ router.post('/login', async (req, res) => {
 	}
 });
 
-
-
-
+router.post('/hotornot', async (req, res) => {
+	try {
+		const math = Math.floor(Math.random() * 10);
+		const tattoo = await Tattoo.findOne({ where: { id: 11 } });
+		res.send(tattoo)
+	} catch (err) {
+		console.error(err);
+		res.status(500).json({ message: 'Internal Server Error' });
+	}
+});
 
 // Like a post
 router.post('/posts/:postId/like', requireLogin, async (req, res) => {
@@ -112,12 +119,6 @@ router.post('/posts/:postId/dislike', requireLogin, async (req, res) => {
     res.status(500).json({ message: 'Internal Server Error' });
   }
 });
-
-
-
-
-
-
 
 // Sign-up
 router.post(
@@ -216,17 +217,10 @@ router.post('/posts/:postId/comments', async (req, res) => {
 	}
 });
 
-
-
 // Authentication routes
 router.get('/profile', requireLogin, (req, res) => {
 	const user = req.session.user;
 	res.render('profile', { user });
 });
-
-router.get('/createpost', (req, res) => {
-	const user = req.session.user;
-	res.render('createpost')
-})
 
 module.exports = router;
