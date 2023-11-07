@@ -41,7 +41,7 @@ router.post('/login', async (req, res) => {
       return res.redirect('/login');
 		}
 
-		// If everything is correct, respond with the user
+		// If everything is OK, log in the user
 		req.session.user = user;
 		req.session.loggedIn = true;
 		res.json(user);
@@ -77,9 +77,11 @@ router.post(
 				password,
 			});
 
-			res.redirect('/homepage');
-
-			res.status(201).json(newUser); // Respond with the newly created user
+			// Log in the user
+			req.session.user = newUser;
+			req.session.loggedIn = true;
+			 // Respond with the newly created user
+			res.status(201).json(newUser);
 		} catch (err) {
 			console.error(err);
 			res.status(500).json({ message: 'Internal Server Error' });

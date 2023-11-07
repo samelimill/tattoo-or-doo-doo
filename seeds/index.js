@@ -1,12 +1,12 @@
 const sequelize = require('../config/connection');
 const { User, Tattoo } = require('../models');
 
-const userData = require('./userData.json');
+const tattooData = require('./tattooData.json');
 
 const seedDatabase = async () => {
   await sequelize.sync({ force: true });
 
-  await User.bulkCreate(userData, {
+  await User.bulkCreate(tattooData,{
     individualHooks: true,
     returning: true,
   });
