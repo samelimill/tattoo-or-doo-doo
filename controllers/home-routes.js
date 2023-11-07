@@ -1,49 +1,52 @@
 const router = require('express').Router();
 
-// home route
+// Home Route
 router.get('/', async (req, res) => {
-  res.render('login');
-})
+	res.redirect('login');
+});
 
-// login route
+// Login Route
 router.get('/login', async (req, res) => {
-  res.render('login');
+
+	res.render('login');
 });
 
-// route for signup
+// Signup Route
 router.get('/signup', async (req, res) => {
-  res.render('signup');
+	res.render('signup');
 });
 
-// route for user's profile
-router.get('/profile', async (req, res) => {
-  res.render('profile');
+// Gallery Route
+router.get('/gallery', (req, res) => {
+	console.log(req.session.user);
+	if (!req.session.user) {
+		return res.redirect('/login');
+	}
+
+	res.render('gallery', { User: req.session.user });
 });
 
-// route to make sure user is logged in and get user data
-router.get('/profile', (req, res) => {
-  if (!req.session.user) {
-    req.flash('error', 'You must be logged in to view this page.')
-    return res.redirect('/login');
-  }
-
-  req.flash('success', 'You are now logged in!')
-  res.render('profile', { User: req.session.user});
-});
-
-// route for homepage
+// Homepage Route
 router.get('/homepage', (req, res) => {
-  res.render('homepage');
+	res.render('homepage');
 });
 
-// route for about page
+// About Route
 router.get('/about', (req, res) => {
-  res.render('about');
+	if (!req.session.user) {
+		return res.redirect('/login');
+	}
+	res.render('about');
 });
 
 router.get('/leaderboard', (req, res) => {
   res.render('leaderboard');
 })
 
-module.exports = router;
+// Logout Route
+router.get('/logout', (req, res) => {
+  req.session.destroy();
+  res.redirect('/login');
+})
 
+module.exports = router;
