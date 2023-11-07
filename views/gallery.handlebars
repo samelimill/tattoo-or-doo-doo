@@ -1,17 +1,18 @@
-<div class='flex justify-center items-center h-screen w-screen'>
+<div class='flex justify-center items-center h-screen w-screen bg-black'>
 	<div class='container mx-auto p-4 bg-gray-300 shadow-lg rounded-lg'>
 		<div class='text-center'>
 			<h1 class='text-2xl font-bold'>User Profile</h1>
 
-		<div class='flex items-center my-4'>
-			<img
-				src='../public/images/skinscoretestpfp.png'
-				alt='User Profile Picture'
-				class='w-16 h-16 rounded-full mr-4'
-			/>
-			<div>
-				<h2 class='text-xl font-bold'>Name: {{ User.username }}</h2>
-				<p class='font-semibold'>SkinScore: {{ User.skinscore }}</p>
+	      <div class='flex items-center justify-center'>
+        <img
+          src='../public/images/skinscoretestpfp.png'
+          alt='User Profile Picture'
+          class='w-24 h-24 rounded-full mb-4'
+        />
+      </div>
+				   <h2 class='text-xl font-bold'>Name: {{ User.username }}</h2>
+        <p class='font-semibold'>SkinScore: {{ User.skinscore }}</p>
+				
 				<a href="/login" id="logout-profile" class="text-lg font-semibold text-blue-700 underline hover:text-blue-500">Logout</a>
 			</div>
 		</div>
@@ -38,13 +39,16 @@
 			{{/each}}
 		</div>
 
-		<div class='bg-gray-200 rounded p-4'>
-			{{!-- <h2 class='text-lg font-bold mb-4'>Create a New Post</h2> --}}
-			<button
-				id='showCreatePost'
-				class='bg-black text-white px-4 py-2 rounded hover:bg-blue-700'
-			>Create Post</button>
-		</div>
-	</div>
+    <div class="flex justify-center">
+      <a href="/createpost">
+        <button
+          id="showCreatePost"
+          class="bg-black text-white px-4 py-2 rounded hover:bg-blue-700"
+        >
+          Create New Post
+        </button>
+      </a>
+    </div>
+  </div>
 </div>
 <script src='../public/js/gallery.js'></script>
