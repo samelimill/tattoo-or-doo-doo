@@ -30,6 +30,10 @@ Tattoo.init(
         key: 'id',
       },
     },
+    points: {
+      type: DataTypes.INTEGER,
+      
+    }
   },
   {
     sequelize,

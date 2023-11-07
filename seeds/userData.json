@@ -1,7 +1,27 @@
 [
   {
-    "username": "firstUser",
-    "email": "email@gmail.com",
+    "username": "SlickRick",
+    "email": "slick@rick.com",
+    "password": "admin12345"
+  },
+  {
+    "username": "FlynnLynne",
+    "email": "flynn@lynne.com",
+    "password": "admin12345"
+  },
+  {
+    "username": "PeterMayhew",
+    "email": "peter@mayhew.com",
+    "password": "admin12345"
+  },
+  {
+    "username": "AlvinMunk",
+    "email": "alvin@munk.com",
+    "password": "admin12345"
+  },
+  {
+    "username": "SlightLight",
+    "email": "slight@light.com",
     "password": "admin12345"
   }
 ]
