@@ -6,7 +6,6 @@ const session = require('express-session');
 const routes = require('./controllers');
 const sequelize = require('./config/connection');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
-const flash = require('connect-flash');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -23,13 +22,7 @@ const sess = {
 
 app.use(session(sess));
 
-const hbs = exphbs.create({
-	helpers: {
-		asset: function (filePath) {
-			return path.join('/public/images/', filePath);
-		}
-	}
-});
+const hbs = exphbs.create({});
 
 // Configure Handlebars as the template engine
 app.engine('handlebars', hbs.engine);
@@ -39,7 +32,6 @@ app.set('view engine', 'handlebars');
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use('/public', express.static(path.join(__dirname, 'public')));
-app.use(flash());
 
 app.use(routes);
 
