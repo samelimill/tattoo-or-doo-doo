@@ -1,7 +1,9 @@
-const signupFormHandler = async (event) => {
-  event.preventDefault();
 
-  const username = document.querySelector('#username-signup').value.trim();
+
+  document.querySelector('form').addEventListener('submit', async (event) => {
+    event.preventDefault();
+
+const username = document.querySelector('#username-signup').value.trim();
   const email = document.querySelector('#email-signup').value.trim();
   const password = document.querySelector('#password-signup').value.trim();
 
@@ -19,7 +21,6 @@ const signupFormHandler = async (event) => {
       alert('Try again, bozo.');
     }
   }
-};
+});
 
 
-document.querySelector('.signup-form').addEventListener('submit', signupFormHandler);

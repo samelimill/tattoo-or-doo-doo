@@ -3,13 +3,13 @@ const router = require('express').Router();
 const bcrypt = require('bcrypt');
 const { User, Post, Comment } = require('../../models');
 
-// Authentication middleware
-function ensureAuthenticated(req, res, next) {
-  if (req.session.loggedIn) {
-    return next();
+// Authorization middleware
+function requireLogin(req, res, next) {
+  if (!req.session.loggedIn) {
+    res.redirect('/login');
+  } else {
+    next();
   }
-
-  res.redirect('/login');
 }
 
 // Create a new tattoo post
@@ -113,6 +113,7 @@ router.post('/login', async (req, res) => {
     // If everything is correct, respond with the user
     req.session.user = user;
     req.session.loggedIn = true;
+    req.flash('success', 'You are now logged in!')
     res.json(user);
   } catch (err) {
     console.error(err);
@@ -124,6 +125,7 @@ router.post('/login', async (req, res) => {
 router.post('/logout', (req, res) => {
   if (req.session.loggedIn) {
     req.session.destroy(() => {
+      req.flash('success', 'You are now logged out!')
       res.status(204).end();
     });
   } else {
@@ -132,12 +134,9 @@ router.post('/logout', (req, res) => {
 });
 
 // Authentication routes
-router.get('/gallery', ensureAuthenticated, (req, res) => {
-  res.render('gallery', { User: req.session.user});
-});
-
-router.get('/', ensureAuthenticated, (req, res) => {
-  res.render('homepage', { User: req.session.user});
+router.get('/profile', requireLogin, (req, res) => {
+  const user = req.session.user;
+  res.render('profile', { user });
 });
 
 module.exports = router;
