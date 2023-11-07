@@ -41,5 +41,9 @@ router.get('/about', (req, res) => {
   res.render('about');
 });
 
+router.get('/leaderboard', (req, res) => {
+  res.render('leaderboard');
+})
+
 module.exports = router;
 

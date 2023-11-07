@@ -1,0 +1,11 @@
+<div class="w-1/4 p-4 bg-gray-200 h-screen">
+    <h1 class="text-2xl font-semibold mb-4">Leaderboard</h1>
+    <ul>
+        {{#each players}}
+        <li class="flex justify-between items-center mb-2">
+            <span>{{this.name}}</span>
+            <span class="text-gray-600">{{this.score}}</span>
+        </li>
+        {{/each}}
+    </ul>
+</div>

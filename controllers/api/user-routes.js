@@ -58,6 +58,74 @@ router.post('/posts/:postId/comments', async (req, res) => {
   }
 });
 
+
+
+
+
+// Like a post
+router.post('/posts/:postId/like', requireLogin, async (req, res) => {
+  try {
+    const postId = req.params.postId;
+    const userId = req.session.user.id;
+
+    // Check if the user has already liked this post
+    const existingLike = await Like.findOne({ where: { postId, userId } });
+    if (existingLike) {
+      return res.status(400).json({ message: 'You have already liked this post' });
+    }
+
+    const newLike = await Like.create({ postId, userId });
+
+    // Calculate the post score
+    const likesCount = await Like.count({ where: { postId } });
+    const dislikesCount = await Dislike.count({ where: { postId } });
+    const score = likesCount - dislikesCount;
+
+    // Update the post's score in the database
+    await Post.update({ score }, { where: { id: postId } });
+
+
+    res.status(201).json({ likeCount: likesCount, score });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Internal Server Error' });
+  }
+});
+
+// Dislike a post
+router.post('/posts/:postId/dislike', requireLogin, async (req, res) => {
+  try {
+    const postId = req.params.postId;
+    const userId = req.session.user.id;
+
+    const existingDislike = await Dislike.findOne({ where: { postId, userId } });
+    if (existingDislike) {
+      return res.status(400).json({ message: 'You have already disliked this post' });
+    }
+
+    const newDislike = await Dislike.create({ postId, userId });
+
+    // Calculate the post score
+    const likesCount = await Like.count({ where: { postId } });
+    const dislikesCount = await Dislike.count({ where: { postId } });
+    const score = likesCount - dislikesCount;
+
+    // Update the post's score in the database
+    await Post.update({ score }, { where: { id: postId } });
+
+    res.status(201).json({ dislikeCount: dislikesCount, score });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Internal Server Error' });
+  }
+});
+
+
+
+
+
+
+
 // Sign-up
 router.post('/signup', [
   check('username').notEmpty().withMessage('Username is required'),
