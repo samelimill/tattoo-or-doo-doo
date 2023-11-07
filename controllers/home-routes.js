@@ -26,6 +26,14 @@ router.get('/gallery', (req, res) => {
 	res.render('gallery', { User: req.session.user });
 });
 
+router.get('/createpost', (req, res) => {
+  if (!req.session.user) {
+		return res.redirect('/login');
+	}
+  console.log(req.session.user);
+  res.render('createpost', { User: req.session.user })
+});
+
 // Homepage Route
 router.get('/homepage', (req, res) => {
 	res.render('homepage');
