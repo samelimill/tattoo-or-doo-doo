@@ -10,7 +10,7 @@
       const formData = new FormData(form);
 
       // Use the fetch API to send a POST request to the /tattoos route
-      fetch("/tattoos", {
+      fetch("/api/users/tattoo", {
         method: "POST",
         body: formData,
       })

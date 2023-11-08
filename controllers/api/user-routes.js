@@ -53,8 +53,9 @@ router.post('/login', async (req, res) => {
 
 router.post('/hotornot', async (req, res) => {
 	try {
-		const math = Math.floor(Math.random() * 10);
+		const math = Math.floor(Math.random() * 10) + 1;
 		const tattoo = await Tattoo.findOne({ where: { id: math } });
+		console.log(tattoo);
 		res.send(tattoo)
 	} catch (err) {
 		console.error(err);
@@ -62,8 +63,19 @@ router.post('/hotornot', async (req, res) => {
 	}
 });
 
-router.put('/posts/:id', async (req, res) => {
-	
+router.put('/post', async (req, res) => {
+	console.log(req.body);
+	try {
+    await Tattoo.update({points: req.body.score}, {
+      where: {
+        id: req.body.id
+      }
+    });
+    res.json({ message: 'Rating updated' });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Internal Server Error' });
+  }
 });
 
 // Like a post
