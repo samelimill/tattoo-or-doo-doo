@@ -62,6 +62,10 @@ router.post('/hotornot', async (req, res) => {
 	}
 });
 
+router.put('/posts/:id', async (req, res) => {
+	
+});
+
 // Like a post
 router.post('/posts/:postId/like', requireLogin, async (req, res) => {
   try {

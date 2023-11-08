@@ -1,23 +1,4 @@
-const upVote = document.getElementById('score-up');
-const downVote = document.getElementById('score-down');
 
-// upVote.addEventListener("click", function () {
-//     fetch('/api/tattoos/:id', {
-//         method: 'PUT',
-//         body: 'up',
-//     })
-//     .then
-// });
-
-// downVote.addEventListener("click", function () {
-//     fetch('/api/tattoos/:id', {
-//         method: 'PUT',
-//         body: 'down',
-//     })
-//     .then
-// });
-
-  
   window.addEventListener('DOMContentLoaded', () => {
     
     const response = fetch('/api/users/hotornot', {
@@ -31,10 +12,32 @@ const downVote = document.getElementById('score-down');
       const stuff = data;
       console.log(stuff);
       const tat = document.getElementById('tat');
+      const oldPoint = document.getElementById('old-points');
       tat.innerHTML= `<h2 id='tat-head' class='text-lg font-bold'>${data.title}</h2>
-        <img id='tat-img' src='${data.imgUrl}' class='h-96'></img>`
+        <img id='tat-img' src='${data.imgUrl}' class='h-96'></img>
+        `
+      oldPoint.innerHTML = `${data.points}`
     })
     .catch((error) => {
       console.error("Error:", error);
     });
+
+    const upVote = document.getElementById('score-up');
+    const downVote = document.getElementById('score-down');
+
+    const scoreUp = () => {
+      var oldScore = document.getElementById('old-points').textContent;
+      console.log(oldScore)
+      updatedScore = oldScore+1;
+      console.log(updatedScore);
+      const dataUpdate = {
+        score: updatedScore
+      };
+    }
+    const scoreDown = () => {
+
+    };
+
+    upVote.addEventListener('click', scoreUp);
+    downVote.addEventListener('click', scoreDown);
 });

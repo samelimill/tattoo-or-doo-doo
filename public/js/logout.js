@@ -15,3 +15,4 @@ let logoutProfile = document.querySelector('#logout');
 if (logoutProfile) {
 	logoutProfile.addEventListener('click', handleLogout);
 }
+3
